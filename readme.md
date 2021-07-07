@@ -1,6 +1,6 @@
 # Chrome extension to help you fill out some of the tedious parts of the application process.
 
-## I got tired of filling out the same information for every application, so I made a Chrome extension to help with the process.
+I got tired of filling out the same information for every application, so I made a Chrome extension to help with the process.
 
 Right now it works for:
 
