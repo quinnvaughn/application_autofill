@@ -1,29 +1,12 @@
-# Chrome Extension boilerplate created with React Typescript
+# Chrome extension to help you fill out some of the tedious parts of the application process.
 
-## Getting started
+Right now it works for:
 
-Create a project based on this boilerplate.
+1. Gender
+2. Hispanic - which is a _yes_ or _no_
+3. Race - which is only asked if you're not Hispanic.
+4. Veteran Status
 
-```
-$ npx degit https://github.com/sivertschou/react-typescript-chrome-extension-boilerplate.git#christmas <project-name>
-```
+Currently this has been tested to work on:
 
-Navigate to the project directory and install the dependencies.
-
-```
-$ npm install
-```
-
-To build the extension, and rebuild it when the files are changed, run
-
-```
-$ npm start
-```
-
-After the project has been built, a directory named `dist` has been created. You have to add this directory to your Chrome browser:
-
-1. Open Chrome.
-2. Navigate to `chrome://extensions`.
-3. Enable _Developer mode_.
-4. Click _Load unpacked_.
-5. Select the `dist` directory.
+1. Greenhouse - in some cases this does not work, as they seem to occassionally use hidden selects and change what is displayed in the input via javascript, although it might actually work for the form submission itself, as it is changing the underlying select's value. I have not tested this myself.
