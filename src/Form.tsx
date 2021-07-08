@@ -46,6 +46,7 @@ export const Form = () => {
           setRace(message.applicationInfo.race)
           setHispanic(message.applicationInfo.hispanic)
           setGender(message.applicationInfo.gender)
+          setStatus(message.applicationInfo.veteranStatus)
         }
         default: {
           break
