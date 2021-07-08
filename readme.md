@@ -12,3 +12,6 @@ Right now it works for:
 Currently this has been tested to work on:
 
 1. Greenhouse - in some cases this does not work, as they seem to occassionally use hidden selects and change what is displayed in the input via javascript, although it might actually work for the form submission itself, as it is changing the underlying select's value. I have not tested this myself.
+
+
+This is currently a w.i.p as I plan on having most of the major fields auto fill in - first name, last name, LinkedIn, etc. I also need to improve the styling as well as only have it perform when you click fill form - as I don't want it to autofill on non job application forms. 
