@@ -1,11 +1,12 @@
-const webpack = require("webpack");
-const path = require("path");
-const CopyPlugin = require("copy-webpack-plugin");
+const webpack = require("webpack")
+const path = require("path")
+const glob = require("glob")
+const CopyPlugin = require("copy-webpack-plugin")
 
 const config = {
   entry: {
     popup: path.join(__dirname, "src/popup.tsx"),
-    content: path.join(__dirname, "src/content.ts"),
+    content: glob.sync("./src/content/*.ts"),
     background: path.join(__dirname, "src/background.ts"),
   },
   output: { path: path.join(__dirname, "dist"), filename: "[name].js" },
@@ -71,6 +72,6 @@ const config = {
       patterns: [{ from: "public", to: "." }],
     }),
   ],
-};
+}
 
-module.exports = config;
+module.exports = config

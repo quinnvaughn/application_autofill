@@ -1,34 +1,11 @@
-import { ApplicationInfo, MessageType, VeteranStatus } from "./types"
+import { ApplicationInfo, MessageType, VeteranStatus } from "../types"
+import { findLabels } from "./findLabels"
+import { findSelects } from "./findSelect"
 /***
  *
  * Find labels on what you assume will be select inputs. These
  * have different functionality than an input.
  ***/
-function findSelects(label: string, value: string) {
-  // Create a regex from the label.
-  const selectRegex = new RegExp(label.toLowerCase(), "i")
-  // Create a regex from the specific value on the select.
-  const valueRegex = new RegExp(value.toLowerCase(), "i")
-  for (const select of Array.from(document.querySelectorAll("select"))) {
-    if (selectRegex.test(select.name) || selectRegex.test(select.id)) {
-      if (
-        select.parentElement &&
-        select.parentElement.style.display === "none"
-      ) {
-        select.parentElement.style.display = "block"
-      }
-
-      for (let i = 0; i < select.options.length; i++) {
-        if (valueRegex.test(select.options[i].text)) {
-          select.selectedIndex = i
-          select.click()
-          select.blur()
-          break
-        }
-      }
-    }
-  }
-}
 
 chrome.runtime.sendMessage({ type: "REQ_APPLICATION_INFO" })
 
@@ -61,6 +38,15 @@ chrome.runtime.onMessage.addListener((message: MessageType) => {
       findSelects("Hispanic", hispanicValue(info.hispanic))
       findSelects("Race", info.race)
       findSelects("Veteran", veteranValue(info.veteranStatus))
+      findLabels("Full name", "Quinn Vaughn")
+      findLabels("Email", "qvaughn3@gmail.com")
+      findLabels("Phone", "309-369-9197")
+      findLabels(
+        "LinkedIn",
+        "https://www.linkedin.com/in/quinn-vaughn-19bb2564/"
+      )
+      findLabels("Github", "https://www.github.com/quinnvaughn")
+      findLabels("Portfolio", "https://www.quinnvaughn.com")
     }
     default: {
       info = info
