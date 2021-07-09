@@ -17,6 +17,7 @@ function findSelects(label: string, value: string) {
       ) {
         select.parentElement.style.display = "block"
       }
+
       for (let i = 0; i < select.options.length; i++) {
         if (valueRegex.test(select.options[i].text)) {
           select.selectedIndex = i
