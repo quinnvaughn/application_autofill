@@ -15,3 +15,15 @@ Currently this has been tested to work on:
 
 
 This is currently a w.i.p as I plan on having most of the major fields auto fill in - first name, last name, LinkedIn, etc. I also need to improve the styling as well as only have it perform when you click fill form - as I don't want it to autofill on non job application forms. 
+
+I plan on adding:
+1. First Name
+2. Last Name
+3. Full Name (just a combination of the first two)
+4. Email
+5. Phone/mobile
+6. Website
+7. LinkedIn
+8. Github (if all three of those are the same, it will preference your website)
+9. Authorized to work in country (will just assume US)
+10. Sponsor a work permit
