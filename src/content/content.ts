@@ -1,4 +1,5 @@
-import { ApplicationInfo, MessageType, VeteranStatus } from "../types"
+import { MessageType, VeteranStatus } from "../types"
+import { createGenericInfo } from "../utils/createGenericInfo"
 import { findLabels } from "./findLabels"
 import { findSelects } from "./findSelect"
 /***
@@ -9,12 +10,7 @@ import { findSelects } from "./findSelect"
 
 chrome.runtime.sendMessage({ type: "REQ_APPLICATION_INFO" })
 
-let info: ApplicationInfo = {
-  gender: "",
-  hispanic: null,
-  race: "",
-  veteranStatus: "",
-}
+let info = createGenericInfo()
 
 function hispanicValue(value: boolean | null) {
   return value === null ? "" : value === true ? "Yes" : "No"
@@ -38,15 +34,11 @@ chrome.runtime.onMessage.addListener((message: MessageType) => {
       findSelects("Hispanic", hispanicValue(info.hispanic))
       findSelects("Race", info.race)
       findSelects("Veteran", veteranValue(info.veteranStatus))
-      findLabels("Full name", "Quinn Vaughn")
-      findLabels("Email", "qvaughn3@gmail.com")
-      findLabels("Phone", "309-369-9197")
-      findLabels(
-        "LinkedIn",
-        "https://www.linkedin.com/in/quinn-vaughn-19bb2564/"
-      )
-      findLabels("Github", "https://www.github.com/quinnvaughn")
-      findLabels("Portfolio", "https://www.quinnvaughn.com")
+      findLabels("First name", info.firstName)
+      findLabels("Last name", info.lastName)
+      findLabels("Full name", info.firstName + " " + info.lastName)
+      findLabels("Email", info.email)
+      findLabels("Phone", info.phoneNumber)
     }
     default: {
       info = info

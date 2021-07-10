@@ -18,6 +18,13 @@ export interface ApplicationInfo {
   hispanic: boolean | null
   gender: Gender
   veteranStatus: VeteranStatus
+  firstName: string
+  lastName: string
+  email: string
+  phoneNumber: string
+  linkedIn: string
+  github: string
+  portfolio: string
 }
 
 interface ApplicationInfoRequest {

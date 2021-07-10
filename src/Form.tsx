@@ -34,6 +34,10 @@ export const Form = () => {
   const [hispanic, setHispanic] = useState<boolean | null>(null)
   const [gender, setGender] = useState<Gender>("")
   const [status, setStatus] = useState<VeteranStatus>("")
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("")
 
   useEffect(() => {
     chrome.runtime.sendMessage({ type: "REQ_APPLICATION_INFO" })
@@ -47,6 +51,10 @@ export const Form = () => {
           setHispanic(message.applicationInfo.hispanic)
           setGender(message.applicationInfo.gender)
           setStatus(message.applicationInfo.veteranStatus)
+          setFirstName(message.applicationInfo.firstName)
+          setLastName(message.applicationInfo.lastName)
+          setEmail(message.applicationInfo.email)
+          setPhoneNumber(message.applicationInfo.phoneNumber)
         }
         default: {
           break
@@ -58,12 +66,53 @@ export const Form = () => {
   const onSubmit = () => {
     chrome.runtime.sendMessage({
       type: "SET_APPLICATION_INFO",
-      applicationInfo: { race, hispanic, gender, veteranStatus: status },
+      applicationInfo: {
+        race,
+        hispanic,
+        gender,
+        veteranStatus: status,
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+      },
     })
   }
 
   return (
     <FormContainer>
+      <label htmlFor="firstName">
+        First name
+        <input
+          id="firstName"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+      </label>
+      <label htmlFor="lastName">
+        Last name
+        <input
+          id="lastName"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+      </label>
+      <label htmlFor="email">
+        Email
+        <input
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </label>
+      <label htmlFor="phoneNumber">
+        Phone Number
+        <input
+          id="phoneNumber"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+        />
+      </label>
       <select
         defaultValue="Please Select"
         value={race}

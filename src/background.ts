@@ -1,4 +1,5 @@
 import { ApplicationInfo, MessageType } from "./types"
+import { createGenericInfo } from "./utils/createGenericInfo"
 
 const sendApplicationInfo = (info: ApplicationInfo) => {
   const message = { type: "APPLICATION_INFO_STATUS", applicationInfo: info }
@@ -14,12 +15,7 @@ const sendApplicationInfo = (info: ApplicationInfo) => {
   })
 }
 
-let info: ApplicationInfo = {
-  race: "",
-  hispanic: null,
-  gender: "",
-  veteranStatus: "",
-}
+let info = createGenericInfo()
 
 chrome.storage.local.get("applicationInfo", (res) => {
   if (res["race"]) {
