@@ -26,6 +26,18 @@ function veteranValue(status: VeteranStatus) {
     : ""
 }
 
+// Some will just use the words I am a veteran, I am not a veteran.
+// This checks for that.
+function otherVeteranValue(status: VeteranStatus) {
+  return status === "Yes"
+    ? "am a"
+    : status === "No"
+    ? "am not"
+    : status === "Decline"
+    ? "decline"
+    : ""
+}
+
 chrome.runtime.onMessage.addListener((message: MessageType) => {
   switch (message.type) {
     case "APPLICATION_INFO_STATUS": {
@@ -34,11 +46,15 @@ chrome.runtime.onMessage.addListener((message: MessageType) => {
       findSelects("Hispanic", hispanicValue(info.hispanic))
       findSelects("Race", info.race)
       findSelects("Veteran", veteranValue(info.veteranStatus))
+      findSelects("Veteran", otherVeteranValue(info.veteranStatus))
       findLabels("First name", info.firstName)
       findLabels("Last name", info.lastName)
       findLabels("Full name", info.firstName + " " + info.lastName)
       findLabels("Email", info.email)
       findLabels("Phone", info.phoneNumber)
+      findLabels("LinkedIn", info.linkedIn)
+      findLabels("Github", info.github)
+      findLabels("Portfolio", info.portfolio)
     }
     default: {
       info = info
