@@ -1,6 +1,5 @@
-import React from "react"
-import { useState } from "react"
-import { useEffect } from "react"
+import React, { useEffect } from "react"
+import { useSetState } from "react-use"
 import { CustomFieldset } from "../CustomFieldset/CustomFieldset"
 import { CustomInput } from "../CustomInput/CustomInput"
 import { CustomRadio } from "../CustomRadio/CustomRadio"
@@ -9,19 +8,13 @@ import { Section } from "../Section/Section"
 import { Gender, MessageType, Race, VeteranStatus } from "../../types"
 import { FormContainer } from "./Form.styles"
 import { CustomButton } from "../CustomButton/CustomButton"
+import { createGenericInfo } from "../../utils/createGenericInfo"
+
+let defaultState = createGenericInfo()
 
 export const Form = () => {
-  const [race, setRace] = useState<Race>("")
-  const [hispanic, setHispanic] = useState<boolean | null>(null)
-  const [gender, setGender] = useState<Gender>("")
-  const [status, setStatus] = useState<VeteranStatus>("")
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [email, setEmail] = useState("")
-  const [phoneNumber, setPhoneNumber] = useState("")
-  const [linkedIn, setLinkedIn] = useState("")
-  const [github, setGithub] = useState("")
-  const [portfolio, setPortfolio] = useState("")
+  // const [state, dispatch] = useReducer(reducer, defaultState)
+  const [state, setState] = useSetState({ ...defaultState })
 
   useEffect(() => {
     chrome.runtime.sendMessage({ type: "REQ_APPLICATION_INFO" })
@@ -31,17 +24,7 @@ export const Form = () => {
     chrome.runtime.onMessage.addListener((message: MessageType) => {
       switch (message.type) {
         case "APPLICATION_INFO_STATUS": {
-          setRace(message.applicationInfo.race)
-          setHispanic(message.applicationInfo.hispanic)
-          setGender(message.applicationInfo.gender)
-          setStatus(message.applicationInfo.veteranStatus)
-          setFirstName(message.applicationInfo.firstName)
-          setLastName(message.applicationInfo.lastName)
-          setEmail(message.applicationInfo.email)
-          setPhoneNumber(message.applicationInfo.phoneNumber)
-          setLinkedIn(message.applicationInfo.linkedIn)
-          setGithub(message.applicationInfo.github)
-          setPortfolio(message.applicationInfo.portfolio)
+          setState({ ...message.applicationInfo })
         }
         default: {
           break
@@ -53,19 +36,7 @@ export const Form = () => {
   const onSubmit = () => {
     chrome.runtime.sendMessage({
       type: "SET_APPLICATION_INFO",
-      applicationInfo: {
-        race,
-        hispanic,
-        gender,
-        veteranStatus: status,
-        firstName,
-        lastName,
-        email,
-        phoneNumber,
-        linkedIn,
-        portfolio,
-        github,
-      },
+      applicationInfo: state,
     })
   }
 
@@ -75,55 +46,55 @@ export const Form = () => {
         <CustomInput
           for="firstName"
           label="First name"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
+          value={state.firstName}
+          onChange={(e) => setState({ firstName: e.target.value })}
         />
         <CustomInput
           for="lastName"
           label="Last name"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
+          value={state.lastName}
+          onChange={(e) => setState({ lastName: e.target.value })}
         />
         <CustomInput
           for="email"
           label="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={state.email}
+          onChange={(e) => setState({ email: e.target.value })}
         />
         <CustomInput
           for="phoneNumber"
           label="Phone"
-          value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
+          value={state.phoneNumber}
+          onChange={(e) => setState({ phoneNumber: e.target.value })}
         />
       </Section>
       <Section title="Links">
         <CustomInput
           for="linkedIn"
           label="LinkedIn"
-          value={linkedIn}
-          onChange={(e) => setLinkedIn(e.target.value)}
+          value={state.linkedIn}
+          onChange={(e) => setState({ linkedIn: e.target.value })}
         />
         <CustomInput
           for="github"
           label="Github"
-          value={github}
-          onChange={(e) => setGithub(e.target.value)}
+          value={state.github}
+          onChange={(e) => setState({ github: e.target.value })}
         />
         <CustomInput
           for="portfolio"
           label="Portfolio"
-          value={portfolio}
-          onChange={(e) => setPortfolio(e.target.value)}
+          value={state.portfolio}
+          onChange={(e) => setState({ portfolio: e.target.value })}
         />
       </Section>
       <Section title="Demographic Info">
         <CustomSelect
           defaultValue="Please Select"
-          value={race}
-          onChange={(e) => setRace(e.target.value as Race)}
+          value={state.race}
+          onChange={(e) => setState({ race: e.target.value as Race })}
         >
-          <option disabled={race.length > 0} value="Please Select">
+          <option disabled={state.race.length > 0} value="Please Select">
             Please Select
           </option>
           <option value="American Indian">
@@ -144,15 +115,15 @@ export const Form = () => {
             label="Yes"
             value="true"
             name="hispanic"
-            checked={hispanic === true}
-            onChange={() => setHispanic(true)}
+            checked={state.hispanic === true}
+            onChange={() => setState({ hispanic: true })}
           />
           <CustomRadio
             label="No"
             value="false"
             name="hispanic"
-            checked={hispanic === false}
-            onChange={() => setHispanic(false)}
+            checked={state.hispanic === false}
+            onChange={() => setState({ hispanic: false })}
           />
         </CustomFieldset>
         <CustomFieldset legend="Gender">
@@ -160,22 +131,22 @@ export const Form = () => {
             label="Male"
             value="Male"
             name="gender"
-            checked={gender === "Male"}
-            onChange={(e) => setGender(e.target.value as Gender)}
+            checked={state.gender === "Male"}
+            onChange={(e) => setState({ gender: e.target.value as Gender })}
           />
           <CustomRadio
             label="Female"
             value="Female"
             name="gender"
-            checked={gender === "Female"}
-            onChange={(e) => setGender(e.target.value as Gender)}
+            checked={state.gender === "Female"}
+            onChange={(e) => setState({ gender: e.target.value as Gender })}
           />
           <CustomRadio
             label="Prefer not to answer"
             value="Decline"
             name="gender"
-            checked={gender === "Decline"}
-            onChange={(e) => setGender(e.target.value as Gender)}
+            checked={state.gender === "Decline"}
+            onChange={(e) => setState({ gender: e.target.value as Gender })}
           />
         </CustomFieldset>
         <CustomFieldset legend="Veteran Status">
@@ -183,22 +154,28 @@ export const Form = () => {
             label="Yes"
             value="Yes"
             name="veteran"
-            checked={status === "Yes"}
-            onChange={(e) => setStatus(e.target.value as VeteranStatus)}
+            checked={state.veteranStatus === "Yes"}
+            onChange={(e) =>
+              setState({ veteranStatus: e.target.value as VeteranStatus })
+            }
           />
           <CustomRadio
             label="No"
             value="No"
             name="veteran"
-            checked={status === "No"}
-            onChange={(e) => setStatus(e.target.value as VeteranStatus)}
+            checked={state.veteranStatus === "No"}
+            onChange={(e) =>
+              setState({ veteranStatus: e.target.value as VeteranStatus })
+            }
           />
           <CustomRadio
             label="Prefer to not answer"
             value="Decline"
             name="veteran"
-            checked={status === "Decline"}
-            onChange={(e) => setStatus(e.target.value as VeteranStatus)}
+            checked={state.veteranStatus === "Decline"}
+            onChange={(e) =>
+              setState({ veteranStatus: e.target.value as VeteranStatus })
+            }
           />
         </CustomFieldset>
       </Section>
