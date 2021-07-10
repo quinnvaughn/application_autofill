@@ -27,3 +27,5 @@ I plan on adding:
 8. Github (if all three of those are the same, it will preference your website)
 9. Authorized to work in country (will just assume US)
 10. Sponsor a work permit
+
+It needs to check for an iframe and prematurely end and send the user an alert if it finds one. The extension cannot access anything within an iframe, outside of possibly through postMessage(), due to XSS concerns, so it's out of luck there.
