@@ -67,6 +67,12 @@ export const Form = () => {
           value={state.phoneNumber}
           onChange={(e) => setState({ phoneNumber: e.target.value })}
         />
+        <CustomInput
+          for="currentCompany"
+          label="Current Company"
+          value={state.currentCompany}
+          onChange={(e) => setState({ currentCompany: e.target.value })}
+        />
       </Section>
       <Section title="Links">
         <CustomInput
