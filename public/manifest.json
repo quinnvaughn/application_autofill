@@ -1,6 +1,6 @@
 {
   "name": "Application Autofill",
-  "description": "Autofills generic application information like your disabilities and",
+  "description": "Autofills generic application information so you can spend your time on the important parts.",
   "manifest_version": 2,
   "version": "0.1.0",
   "icons": {
