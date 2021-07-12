@@ -13,5 +13,8 @@ export function createGenericInfo(): ApplicationInfo {
     portfolio: "",
     race: "",
     veteranStatus: "",
+    currentCompany: "",
+    twitter: "",
+    other: "",
   }
 }

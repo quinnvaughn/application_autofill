@@ -21,10 +21,13 @@ export interface ApplicationInfo {
   firstName: string
   lastName: string
   email: string
+  currentCompany: string
   phoneNumber: string
   linkedIn: string
   github: string
   portfolio: string
+  twitter: string
+  other: string
 }
 
 interface ApplicationInfoRequest {
