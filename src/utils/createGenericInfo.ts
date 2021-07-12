@@ -1,6 +1,6 @@
 import { ApplicationInfo } from "../types"
 
-export function createGenericInfo(): ApplicationInfo {
+export const createGenericInfo = (): ApplicationInfo => {
   return {
     email: "",
     firstName: "",

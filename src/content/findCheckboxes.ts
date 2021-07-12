@@ -1,4 +1,4 @@
-export function findCheckboxesAndRadios(label: string, value: string) {
+export const findCheckboxesAndRadios = (label: string, value: string) => {
   const labelRegex = new RegExp(label.toLowerCase(), "i")
 
   const valueRegex = new RegExp(value.toLocaleUpperCase(), "i")

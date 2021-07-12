@@ -1,4 +1,4 @@
-export function findSelects(label: string, value: string) {
+export const findSelects = (label: string, value: string) => {
   // Create a regex from the label.
   const selectRegex = new RegExp(label.toLowerCase(), "i")
   // Create a regex from the specific value on the select.

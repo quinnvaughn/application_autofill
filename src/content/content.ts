@@ -13,11 +13,11 @@ chrome.runtime.sendMessage({ type: "REQ_APPLICATION_INFO" })
 
 let info = createGenericInfo()
 
-function booleanValue(value: boolean | null) {
+const booleanValue = (value: boolean | null) => {
   return value === null ? "" : value === true ? "Yes" : "No"
 }
 
-function veteranValue(status: VeteranStatus) {
+const veteranValue = (status: VeteranStatus) => {
   return status === "Yes"
     ? "identify"
     : status === "No"
@@ -29,7 +29,7 @@ function veteranValue(status: VeteranStatus) {
 
 // Some will just use the words I am a veteran, I am not a veteran.
 // This checks for that.
-function otherVeteranValue(status: VeteranStatus) {
+const otherVeteranValue = (status: VeteranStatus) => {
   return status === "Yes"
     ? "am a"
     : status === "No"
