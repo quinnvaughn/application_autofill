@@ -76,6 +76,12 @@ export const Form = () => {
           onChange={(e) => setState({ linkedIn: e.target.value })}
         />
         <CustomInput
+          for="twitter"
+          label="Twitter"
+          value={state.twitter}
+          onChange={(e) => setState({ twitter: e.target.value })}
+        />
+        <CustomInput
           for="github"
           label="Github"
           value={state.github}
@@ -87,8 +93,30 @@ export const Form = () => {
           value={state.portfolio}
           onChange={(e) => setState({ portfolio: e.target.value })}
         />
+        <CustomInput
+          for="otherWebsite"
+          label="Other Website"
+          value={state.other}
+          onChange={(e) => setState({ other: e.target.value })}
+        />
       </Section>
       <Section title="Demographic Info">
+        <CustomFieldset legend="Currently based in the US?">
+          <CustomRadio
+            label="Yes"
+            value="true"
+            name="basedIn"
+            checked={state.basedIn === true}
+            onChange={() => setState({ basedIn: true })}
+          />
+          <CustomRadio
+            label="No"
+            value="false"
+            name="basedIn"
+            checked={state.basedIn === false}
+            onChange={() => setState({ basedIn: false })}
+          />
+        </CustomFieldset>
         <CustomSelect
           defaultValue="Please Select"
           value={state.race}

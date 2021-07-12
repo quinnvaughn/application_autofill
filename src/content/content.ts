@@ -1,5 +1,6 @@
 import { MessageType, VeteranStatus } from "../types"
 import { createGenericInfo } from "../utils/createGenericInfo"
+import { findCheckboxesAndRadios } from "./findCheckboxes"
 import { findLabels } from "./findLabels"
 import { findSelects } from "./findSelect"
 /***
@@ -12,7 +13,7 @@ chrome.runtime.sendMessage({ type: "REQ_APPLICATION_INFO" })
 
 let info = createGenericInfo()
 
-function hispanicValue(value: boolean | null) {
+function booleanValue(value: boolean | null) {
   return value === null ? "" : value === true ? "Yes" : "No"
 }
 
@@ -43,7 +44,7 @@ chrome.runtime.onMessage.addListener((message: MessageType) => {
     case "APPLICATION_INFO_STATUS": {
       info = { ...message.applicationInfo }
       findSelects("Gender", info.gender)
-      findSelects("Hispanic", hispanicValue(info.hispanic))
+      findSelects("Hispanic", booleanValue(info.hispanic))
       findSelects("Race", info.race)
       findSelects("Veteran", veteranValue(info.veteranStatus))
       findSelects("Veteran", otherVeteranValue(info.veteranStatus))
@@ -55,6 +56,7 @@ chrome.runtime.onMessage.addListener((message: MessageType) => {
       findLabels("LinkedIn", info.linkedIn)
       findLabels("Github", info.github)
       findLabels("Portfolio", info.portfolio)
+      findCheckboxesAndRadios("Based in", booleanValue(info.basedIn))
     }
     default: {
       info = info

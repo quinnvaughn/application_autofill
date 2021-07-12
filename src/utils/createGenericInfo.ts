@@ -16,5 +16,6 @@ export function createGenericInfo(): ApplicationInfo {
     currentCompany: "",
     twitter: "",
     other: "",
+    basedIn: null,
   }
 }

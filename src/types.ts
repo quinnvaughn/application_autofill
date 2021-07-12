@@ -28,6 +28,7 @@ export interface ApplicationInfo {
   portfolio: string
   twitter: string
   other: string
+  basedIn: boolean | null
 }
 
 interface ApplicationInfoRequest {
