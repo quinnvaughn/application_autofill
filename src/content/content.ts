@@ -56,6 +56,8 @@ chrome.runtime.onMessage.addListener((message: MessageType) => {
       findLabels("LinkedIn", info.linkedIn)
       findLabels("Github", info.github)
       findLabels("Portfolio", info.portfolio)
+      findLabels("Twitter", info.twitter)
+      findLabels("Other", info.other)
       findCheckboxesAndRadios("Based in", booleanValue(info.basedIn))
     }
     default: {

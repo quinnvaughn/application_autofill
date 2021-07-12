@@ -118,6 +118,7 @@ export const Form = () => {
           />
         </CustomFieldset>
         <CustomSelect
+          label="Race"
           defaultValue="Please Select"
           value={state.race}
           onChange={(e) => setState({ race: e.target.value as Race })}

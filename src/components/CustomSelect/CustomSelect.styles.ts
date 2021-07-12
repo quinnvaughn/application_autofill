@@ -9,4 +9,12 @@ const StyledSelect = styled.select`
   margin-bottom: 8px;
 `
 
-export { StyledSelect }
+const SelectLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  grid-gap: 4px;
+`
+
+const SelectField = styled.span``
+
+export { StyledSelect, SelectField, SelectLabel }
