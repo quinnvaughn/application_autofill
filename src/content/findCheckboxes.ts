@@ -1,22 +1,31 @@
-export const findCheckboxesAndRadios = (label: string, value: string) => {
-  const labelRegex = new RegExp(label.toLowerCase(), "i")
+import { createRegex } from "../utils/createRegex"
+import { querySelectorArray } from "../utils/querySelectorArray"
 
-  const valueRegex = new RegExp(value.toLocaleUpperCase(), "i")
+const flipChecked = (input: HTMLInputElement) => (input.checked = true)
+
+export const findCheckboxesAndRadios = (label: string, value: string) => {
+  const labelRegex = createRegex(label)
+
+  const valueRegex = createRegex(value)
 
   // if empty string.
   if (value.length === 0) return
 
-  for (const label of Array.from(document.querySelectorAll("label"))) {
+  const allLabels = querySelectorArray("label")
+
+  allLabels.some((label) => {
     if (labelRegex.test(label.innerText)) {
       const inputs = label.getElementsByTagName("input")
 
       if (inputs.length === 0) {
-        break
+        return true
       }
 
-      for (const input of Array.from(inputs)) {
-        valueRegex.test(input.value) ? (input.checked = true) : input
-      }
+      Array.from(inputs).some((input) =>
+        valueRegex.test(input.value) ? (flipChecked(input), true) : false
+      )
+      return true
     }
-  }
+    return false
+  })
 }

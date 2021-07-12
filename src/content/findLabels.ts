@@ -1,7 +1,19 @@
-export const findLabels = (label: string, value: string) => {
-  const labelRegex = new RegExp(label.toLowerCase(), "i")
+import { createRegex } from "../utils/createRegex"
+import { querySelectorArray } from "../utils/querySelectorArray"
 
-  for (const label of Array.from(document.querySelectorAll("label"))) {
+const setInputValue = (value: string) => (input: HTMLInputElement) =>
+  (input.value = value)
+
+export const findLabels = (label: string, value: string) => {
+  const labelRegex = createRegex(label)
+
+  const labelValue = setInputValue(value)
+
+  const allLabels = querySelectorArray("label")
+
+  Array.from(document.querySelectorAll("label"))
+
+  allLabels.some((label) => {
     if (labelRegex.test(label.innerText)) {
       // get the first input under a label.
       const input = label.getElementsByTagName("input")[0]
@@ -16,14 +28,16 @@ export const findLabels = (label: string, value: string) => {
             htmlFor
           ) as HTMLInputElement | null
           if (input) {
-            input.value = value
-            break
+            labelValue(input)
+            return true
           }
         }
+        return true
       } else {
-        input.value = value
-        break
+        labelValue(input)
+        return true
       }
     }
-  }
+    return false
+  })
 }
