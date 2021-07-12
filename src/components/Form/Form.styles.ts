@@ -7,4 +7,10 @@ const FormContainer = styled.div`
   flex-direction: column;
 `
 
-export { FormContainer }
+const FormContent = styled.div`
+  width: 100%;
+  flex: 1 1 auto;
+  overflow: auto;
+`
+
+export { FormContainer, FormContent }

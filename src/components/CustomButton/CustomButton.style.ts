@@ -12,13 +12,12 @@ const StyledButton = styled.button`
   background-color: ${theme.primary};
   text-shadow: none;
   border: none;
-  border-radius: 3px;
   width: 100%;
   color: white;
 `
 
 const ButtonContainer = styled.div`
-  padding: 10px 16px;
+  flex: 0 0 auto;
 `
 
 export { StyledButton, ButtonContainer }
