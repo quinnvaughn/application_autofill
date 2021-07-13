@@ -4,7 +4,7 @@ import { theme } from "../../theme/theme"
 const SectionContainer = styled.div`
   padding: 8px 16px;
   border-bottom: 1px solid ${theme.border};
-  &:nth-child(3) {
+  &:nth-child(4) {
     border-bottom: none;
   }
 `
