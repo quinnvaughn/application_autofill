@@ -215,6 +215,40 @@ export const Form = () => {
             />
           </CustomFieldset>
         </Section>
+        <Section title="Additional Info">
+          <CustomFieldset legend="Are you legally authorized to work in the United States?">
+            <CustomRadio
+              label="Yes"
+              value="true"
+              name="authorized"
+              checked={state.authorized === true}
+              onChange={() => setState({ authorized: true })}
+            />
+            <CustomRadio
+              label="No"
+              value="false"
+              name="authorized"
+              checked={state.authorized === false}
+              onChange={() => setState({ authorized: false })}
+            />
+          </CustomFieldset>
+          <CustomFieldset legend="Will you require a visa sponsorship now or in the future?">
+            <CustomRadio
+              label="Yes"
+              value="true"
+              name="workVisa"
+              checked={state.workVisa === true}
+              onChange={() => setState({ workVisa: true })}
+            />
+            <CustomRadio
+              label="No"
+              value="false"
+              name="workVisa"
+              checked={state.workVisa === false}
+              onChange={() => setState({ workVisa: false })}
+            />
+          </CustomFieldset>
+        </Section>
       </FormContent>
       <CustomButton onClick={onSubmit}>Submit</CustomButton>
     </FormContainer>

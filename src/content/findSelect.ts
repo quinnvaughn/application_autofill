@@ -13,7 +13,8 @@ const displayParentContainer = (select: HTMLSelectElement) =>
     ? (select.parentElement.style.display = "block")
     : "none"
 
-export const findSelects = (label: string, value: string) => {
+export const findSelects = (label: string, value: string | null) => {
+  if (!value) return
   // Create a regex from the label.
   const selectRegex = createRegex(label)
   // Create a regex from the specific value on the select.
@@ -39,6 +40,9 @@ export const findSelects = (label: string, value: string) => {
 
       // remove class so select is visible.
       select.classList.remove("select2-offscreen")
+      // adds to the id so that if you change your answer
+      // it has something to grab onto the second/etc times.
+      select.id = select.id + label
       Array.from(select.options).some((option, i) =>
         valueRegex.test(option.text)
           ? (setSelectedIndex(i)(select),

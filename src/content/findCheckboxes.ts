@@ -3,7 +3,11 @@ import { querySelectorArray } from "../utils/querySelectorArray"
 
 const flipChecked = (input: HTMLInputElement) => (input.checked = true)
 
-export const findCheckboxesAndRadios = (label: string, value: string) => {
+export const findCheckboxesAndRadios = (
+  label: string,
+  value: string | null
+) => {
+  if (!value) return
   const labelRegex = createRegex(label)
 
   const valueRegex = createRegex(value)

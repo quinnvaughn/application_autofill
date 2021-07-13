@@ -29,6 +29,8 @@ export interface ApplicationInfo {
   twitter: string
   other: string
   basedIn: boolean | null
+  authorized: boolean | null
+  workVisa: boolean | null
 }
 
 interface ApplicationInfoRequest {

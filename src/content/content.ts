@@ -14,7 +14,7 @@ chrome.runtime.sendMessage({ type: "REQ_APPLICATION_INFO" })
 let info = createGenericInfo()
 
 const booleanValue = (value: boolean | null) => {
-  return value === null ? "" : value === true ? "Yes" : "No"
+  return value === null ? null : value === true ? "Yes" : "No"
 }
 
 const veteranValue = (status: VeteranStatus) => {
@@ -50,8 +50,8 @@ chrome.runtime.onMessage.addListener((message: MessageType) => {
       findSelects("Ethnicity", info.race)
       findSelects("Veteran", veteranValue(info.veteranStatus))
       findSelects("Veteran", otherVeteranValue(info.veteranStatus))
-      findSelects("Legally authorized", "Yes")
-      findSelects("Work visa", "No")
+      findSelects("Legally authorized", booleanValue(info.authorized))
+      findSelects("Work visa", booleanValue(info.workVisa))
       findLabels("First name", info.firstName)
       findLabels("Last name", info.lastName)
       findLabels("Full name", info.firstName + " " + info.lastName)

@@ -17,5 +17,7 @@ export const createGenericInfo = (): ApplicationInfo => {
     twitter: "",
     other: "",
     basedIn: null,
+    authorized: null,
+    workVisa: null,
   }
 }
