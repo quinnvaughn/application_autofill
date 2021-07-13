@@ -17,11 +17,9 @@ const sendApplicationInfo = (info: ApplicationInfo) => {
 
 let info = createGenericInfo()
 
-chrome.storage.local.get("applicationInfo", (res) => {
-  if (res["race"]) {
-    info = res as ApplicationInfo
-  } else {
-    info = info
+chrome.storage.sync.get("applicationInfo", (res) => {
+  if (res.applicationInfo) {
+    info = res.applicationInfo
   }
 })
 
@@ -33,7 +31,7 @@ chrome.runtime.onMessage.addListener((message: MessageType) => {
     }
     case "SET_APPLICATION_INFO": {
       info = message.applicationInfo
-      chrome.storage.local.set({ applicationInfo: info })
+      chrome.storage.sync.set({ applicationInfo: info })
       sendApplicationInfo(info)
       break
     }
