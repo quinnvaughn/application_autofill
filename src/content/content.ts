@@ -45,7 +45,9 @@ chrome.runtime.onMessage.addListener((message: MessageType) => {
       info = { ...message.applicationInfo }
       findSelects("Gender", info.gender)
       findSelects("Hispanic", booleanValue(info.hispanic))
+      // This may be race or ethnicity, so check for both.
       findSelects("Race", info.race)
+      findSelects("Ethnicity", info.race)
       findSelects("Veteran", veteranValue(info.veteranStatus))
       findSelects("Veteran", otherVeteranValue(info.veteranStatus))
       findLabels("First name", info.firstName)
@@ -60,6 +62,7 @@ chrome.runtime.onMessage.addListener((message: MessageType) => {
       findLabels("Other", info.other)
       findLabels("Current company", info.currentCompany)
       findCheckboxesAndRadios("Based in", booleanValue(info.basedIn))
+      findCheckboxesAndRadios("Gender", info.gender)
     }
     default: {
       info = info
