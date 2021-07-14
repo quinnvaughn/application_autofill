@@ -31,7 +31,6 @@ chrome.runtime.onMessage.addListener((message: MessageType) => {
     }
     case "SET_APPLICATION_INFO": {
       info = message.applicationInfo
-
       chrome.storage.sync.set({ applicationInfo: info })
       sendApplicationInfo(info)
       break

@@ -31,10 +31,13 @@ export const findSelects = (label: string, value: string | null) => {
       const parent = select.parentElement
 
       if (parent) {
-        // remove children with classname.
-        Array.from(parent.children).forEach(
-          (child) =>
-            child.classList.contains("select2-container") && child.remove()
+        // hide children with classname.
+        Array.from(parent.children as HTMLCollectionOf<HTMLElement>).forEach(
+          (child) => {
+            if (child.classList.contains("select2-container")) {
+              child.style.display = "none"
+            }
+          }
         )
       }
 

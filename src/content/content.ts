@@ -1,4 +1,4 @@
-import { MessageType, VeteranStatus } from "../types"
+import { DisabilityStatus, MessageType, VeteranStatus } from "../types"
 import { createGenericInfo } from "../utils/createGenericInfo"
 import { findCheckboxesAndRadios } from "./findCheckboxes"
 import { findLabels } from "./findLabels"
@@ -39,6 +39,16 @@ const otherVeteranValue = (status: VeteranStatus) => {
     : ""
 }
 
+const disabilityValue = (disability: DisabilityStatus) => {
+  return disability === "Yes"
+    ? "Yes"
+    : disability === "No"
+    ? "No"
+    : disability === "Decline"
+    ? "answer"
+    : ""
+}
+
 chrome.runtime.onMessage.addListener((message: MessageType) => {
   switch (message.type) {
     case "APPLICATION_INFO_STATUS": {
@@ -52,6 +62,7 @@ chrome.runtime.onMessage.addListener((message: MessageType) => {
       findSelects("Veteran", otherVeteranValue(info.veteranStatus))
       findSelects("Legally authorized", booleanValue(info.authorized))
       findSelects("Work visa", booleanValue(info.workVisa))
+      findSelects("Disability", disabilityValue(info.disability))
       findLabels("First name", info.firstName)
       findLabels("Last name", info.lastName)
       findLabels("Full name", info.firstName + " " + info.lastName)
@@ -60,8 +71,13 @@ chrome.runtime.onMessage.addListener((message: MessageType) => {
       findLabels("LinkedIn", info.linkedIn)
       findLabels("Github", info.github)
       findLabels("Portfolio", info.portfolio)
-      findLabels("Twitter", info.twitter)
       findLabels("Other", info.other)
+      // A lot of websites use the word website instead of portfolio.
+      // This makes sure that other website isn't included, as that is what
+      // other is looking for. They might be the same thing, but we don't
+      // want to assume.
+      findLabels("Website", info.portfolio, "Other")
+      findLabels("Twitter", info.twitter)
       findLabels("Current company", info.currentCompany)
       findCheckboxesAndRadios("Based in", booleanValue(info.basedIn))
       findCheckboxesAndRadios("Gender", info.gender)

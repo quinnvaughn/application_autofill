@@ -4,7 +4,7 @@ import { querySelectorArray } from "../utils/querySelectorArray"
 const setInputValue = (value: string) => (input: HTMLInputElement) =>
   (input.value = value)
 
-export const findLabels = (label: string, value: string) => {
+export const findLabels = (label: string, value: string, notLabel?: string) => {
   const labelRegex = createRegex(label)
 
   const labelValue = setInputValue(value)
@@ -15,6 +15,12 @@ export const findLabels = (label: string, value: string) => {
     // if label matches go through rest of logic.
     // if not, return false.
     if (labelRegex.test(label.innerText)) {
+      if (notLabel) {
+        const notLabelRegex = createRegex(notLabel)
+        //check if the label includes the text you don't want it to include.
+        // if so, return early.
+        if (notLabelRegex.test(label.innerText)) return false
+      }
       // Check if label has for, it won't have inner inputs then.
       // if label has for attribute, easy to find input.
       if (label.hasAttribute("for")) {

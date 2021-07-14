@@ -19,5 +19,6 @@ export const createGenericInfo = (): ApplicationInfo => {
     basedIn: null,
     authorized: null,
     workVisa: null,
+    disability: "",
   }
 }

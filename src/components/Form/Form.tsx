@@ -5,7 +5,13 @@ import { CustomInput } from "../CustomInput/CustomInput"
 import { CustomRadio } from "../CustomRadio/CustomRadio"
 import { CustomSelect } from "../CustomSelect/CustomSelect"
 import { Section } from "../Section/Section"
-import { Gender, MessageType, Race, VeteranStatus } from "../../types"
+import {
+  DisabilityStatus,
+  Gender,
+  MessageType,
+  Race,
+  VeteranStatus,
+} from "../../types"
 import { FormContainer, FormContent } from "./Form.styles"
 import { CustomButton } from "../CustomButton/CustomButton"
 import { createGenericInfo } from "../../utils/createGenericInfo"
@@ -211,6 +217,35 @@ export const Form = () => {
               checked={state.veteranStatus === "Decline"}
               onChange={(e) =>
                 setState({ veteranStatus: e.target.value as VeteranStatus })
+              }
+            />
+          </CustomFieldset>
+          <CustomFieldset legend="Disabled?">
+            <CustomRadio
+              label="Yes"
+              value="Yes"
+              name="disability"
+              checked={state.disability === "Yes"}
+              onChange={(e) =>
+                setState({ disability: e.target.value as DisabilityStatus })
+              }
+            />
+            <CustomRadio
+              label="No"
+              value="No"
+              name="disability"
+              checked={state.disability === "No"}
+              onChange={(e) =>
+                setState({ disability: e.target.value as DisabilityStatus })
+              }
+            />
+            <CustomRadio
+              label="Prefer to not answer"
+              value="Decline"
+              name="disability"
+              checked={state.disability === "Decline"}
+              onChange={(e) =>
+                setState({ disability: e.target.value as DisabilityStatus })
               }
             />
           </CustomFieldset>

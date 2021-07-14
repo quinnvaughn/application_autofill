@@ -13,6 +13,8 @@ export type Gender = "Male" | "Female" | "Decline" | ""
 
 export type VeteranStatus = "Yes" | "No" | "Decline" | ""
 
+export type DisabilityStatus = "Yes" | "No" | "Decline" | ""
+
 export interface ApplicationInfo {
   race: Race
   hispanic: boolean | null
@@ -31,6 +33,7 @@ export interface ApplicationInfo {
   basedIn: boolean | null
   authorized: boolean | null
   workVisa: boolean | null
+  disability: DisabilityStatus
 }
 
 interface ApplicationInfoRequest {
