@@ -62,6 +62,7 @@ chrome.runtime.onMessage.addListener((message: MessageType) => {
       findSelects("Veteran", otherVeteranValue(info.veteranStatus))
       findSelects("Legally authorized", booleanValue(info.authorized))
       findSelects("Work visa", booleanValue(info.workVisa))
+      findSelects("Sponsorship", booleanValue(info.workVisa))
       findSelects("Disability", disabilityValue(info.disability))
       findLabels("First name", info.firstName)
       findLabels("Last name", info.lastName)
