@@ -30,5 +30,5 @@
       ]
     }
   ],
-  "permissions": ["storage", "tabs", "activeTab"]
+  "permissions": ["storage", "tabs"]
 }

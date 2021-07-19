@@ -82,6 +82,8 @@ chrome.runtime.onMessage.addListener((message: MessageType) => {
       findLabels("Current company", info.currentCompany)
       findCheckboxesAndRadios("Based in", booleanValue(info.basedIn))
       findCheckboxesAndRadios("Gender", info.gender)
+      findCheckboxesAndRadios("Race", info.race)
+      findCheckboxesAndRadios("Ethnicity", info.race)
     }
     default: {
       info = info
