@@ -2,7 +2,7 @@
   "name": "Application Autofill",
   "description": "Autofills generic application information so you can spend your time on the important parts.",
   "manifest_version": 2,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",

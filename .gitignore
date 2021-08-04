@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# Google chrome zip
+dist.zip
+
 # production
 /build
 /dist
